@@ -1,26 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import GenericButton from '../../components/atoms/GenericButton';
-import {
-    useFonts,
-    Ubuntu_300Light,
-    Ubuntu_300Light_Italic,
-    Ubuntu_400Regular,
-    Ubuntu_400Regular_Italic,
-    Ubuntu_500Medium,
-    Ubuntu_500Medium_Italic,
-    Ubuntu_700Bold,
-    Ubuntu_700Bold_Italic,
-} from '@expo-google-fonts/ubuntu';
+import { Title } from '../../components/atoms/Typography';
 
 const Home = () => {
-    let [fontsLoaded, fontError] = useFonts({
-        Ubuntu_700Bold,
-    });
 
-    if (!fontsLoaded && !fontError) {
-        return null;
-    }
 
     return (
         <View style={styles.container}>
@@ -29,7 +13,7 @@ const Home = () => {
             </View>
             <View style={styles.bottomContainer}>
                 <View style={styles.welcomeContainer}>
-                    <Text style={styles.welcomeText}>Bienvenue !</Text>
+                    <Title.MD>Bienvenue !</Title.MD>
                     <Text style={styles.descriptionText}>Des lunettes pour tous, par tous.</Text>
                     <Text style={styles.descriptionText}>Votre vision, notre mission !</Text>
                 </View>
