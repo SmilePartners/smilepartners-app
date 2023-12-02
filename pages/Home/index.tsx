@@ -1,11 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import GenericButton from '../../components/atoms/GenericButton';
-import { Title } from '../../components/atoms/Typography';
+import { RegularText, Title } from '../../components/atoms/Typography';
+import { colors } from '../../utils/colors'
 
 const Home = () => {
-
-
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -13,12 +12,22 @@ const Home = () => {
             </View>
             <View style={styles.bottomContainer}>
                 <View style={styles.welcomeContainer}>
-                    <Title.MD>Bienvenue !</Title.MD>
-                    <Text style={styles.descriptionText}>Des lunettes pour tous, par tous.</Text>
-                    <Text style={styles.descriptionText}>Votre vision, notre mission !</Text>
+                    <Title.MD style={{ marginBottom: 10 }}>Bienvenue !</Title.MD>
+                    <RegularText.MD >Des lunettes pour tous, par tous.</RegularText.MD>
+                    <RegularText.MD>Votre vision, notre mission !</RegularText.MD>
                 </View>
-                <GenericButton to='/home' title='Je me connecte' />
-                <GenericButton to='/home' title='Je deviens Smileur' />
+                <GenericButton 
+                    textStyle={{ color: colors.secondary }}
+                    style={{ marginBottom: 20 }}
+                    to='/login'
+                    title='Je me connecte'
+                  />
+                <GenericButton
+                    style={{ backgroundColor: colors.secondary }}
+                    textStyle={{ color: colors.white }}
+                    to='/login' 
+                    title='Je deviens Smileur !'
+                 />
 
             </View>
         </View>
@@ -28,7 +37,7 @@ const Home = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFF',
+        backgroundColor: colors.white,
     },
     header: {
         alignItems: 'center',
@@ -41,29 +50,18 @@ const styles = StyleSheet.create({
         fontFamily: 'Ubuntu_700Bold'
     },
     welcomeContainer: {
-        paddingHorizontal: 25, // Ajustez en fonction de votre design
-        marginBottom: 20,
+        marginBottom: 40,
         alignItems: 'flex-start',
         width: '100%',
     },
-    welcomeText: {
-        fontSize: 32, // Ajustez à la taille de votre design
-        fontWeight: 'bold',
-        fontFamily: 'Ubuntu_700Bold',
-        marginBottom: 10, // Espace entre "Bienvenue !" et le texte descriptif
-    },
-    descriptionText: {
-        fontSize: 16, // Ajustez à la taille de votre design
-        color: '#141000', // Une couleur grise pour le texte descriptif
-        textAlign: 'left',
-        lineHeight: 26,
-    },
     bottomContainer: {
         alignItems: 'center',
-        height: '45%',
-        backgroundColor: '#FFDD64',
-        paddingVertical: 50,
-        borderRadius: 45,
+        height: '50%',
+        backgroundColor: colors.primary,
+        paddingVertical: 40,
+        paddingHorizontal: 30,
+        borderTopLeftRadius: 45,
+        borderTopRightRadius: 45,
     }
 });
 

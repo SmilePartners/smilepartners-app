@@ -12,7 +12,11 @@ interface TypographyProps extends TextProps {
 const regularTextStyles = StyleSheet.create({
     XS: { fontSize: 12 },
     SM: { fontSize: 14 },
-    MD: { fontSize: 16 },
+    MD: {
+        fontFamily: 'Ubuntu_400Regular',
+        fontSize: 16,
+        lineHeight: 26,
+    },
     LG: { fontSize: 18 },
     XL: { fontSize: 20 },
 });

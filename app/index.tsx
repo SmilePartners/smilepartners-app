@@ -12,8 +12,10 @@ import {
   Ubuntu_700Bold,
   Ubuntu_700Bold_Italic,
 } from '@expo-google-fonts/ubuntu';
+import 'expo-router/entry';
 
-export default function App() {
+
+export default function Welcome() {
   let [fontsLoaded, fontError] = useFonts({
     Ubuntu_700Bold,
     Ubuntu_300Light,
@@ -26,11 +28,11 @@ export default function App() {
   });
 
   if (!fontsLoaded && !fontError) {
-    return null;
+      return null;
   }
 
   return (
-    <Home />
+      <Home />
   );
 }
 

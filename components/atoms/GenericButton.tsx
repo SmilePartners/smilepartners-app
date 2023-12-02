@@ -10,10 +10,11 @@ interface GenericButtonProps {
 }
 
 const GenericButton: React.FC<GenericButtonProps> = ({ to, title, style, textStyle }) => {
+    
     return (
         <Link href={to} asChild>
-            <Pressable style={[styles.button, style]}>
-                <Text style={textStyle ? textStyle : styles.text}>{title}</Text>
+            <Pressable style={{...styles.button, ...Object(style)}}>
+                <Text style={{...styles.text, ...Object(textStyle)}}>{title}</Text>
             </Pressable>
         </Link>
     );
@@ -22,7 +23,7 @@ const GenericButton: React.FC<GenericButtonProps> = ({ to, title, style, textSty
 const styles = StyleSheet.create({
     button: {
         backgroundColor: '#FFFFFF',
-        width: '60%',
+        width: '75%',
         paddingVertical: 20,
         borderRadius: 90,
         alignItems: 'center',
