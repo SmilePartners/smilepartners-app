@@ -1,12 +1,20 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity,  } from 'react-native';
+import { RegularText, Title } from '../../components/atoms/Typography';
 import { colors } from '../../utils/colors'
+import { StatusBar } from 'expo-status-bar';
+import { CustomStatusBar } from '../../components/atoms/CustomStatusBar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-const LoginPage = () => {
+const Login = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.title}>SMILE BONJOUR</Text>
+                <Title.MD style={{ marginBottom: 10 }}>Se connecter</Title.MD>
+                <RegularText.MD >Utilisez les identifiants que vous avez saisis lors de la création de votre compte.</RegularText.MD>
+            </View>
+            <View style={styles.bottomContainer}>
+
             </View>
         </View>
     );
@@ -15,27 +23,18 @@ const LoginPage = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.white,
+        height: '100%',
+        backgroundColor: colors.primary,
     },
     header: {
-        alignItems: 'center',
         justifyContent: 'center',
-        height: '55%',
-    },
-    title: {
-        fontSize: 36,
-        fontWeight: 'bold',
-        fontFamily: 'Ubuntu_700Bold'
-    },
-    welcomeContainer: {
-        marginBottom: 40,
-        alignItems: 'flex-start',
-        width: '100%',
+        height: '30%',
+        paddingHorizontal: 30,
     },
     bottomContainer: {
         alignItems: 'center',
-        height: '45%',
-        backgroundColor: colors.primary,
+        height: '85%',
+        backgroundColor: colors.white,
         paddingVertical: 40,
         paddingHorizontal: 30,
         borderTopLeftRadius: 45,
@@ -44,4 +43,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default LoginPage;
+export default Login;

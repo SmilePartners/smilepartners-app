@@ -3,12 +3,16 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import GenericButton from '../../components/atoms/GenericButton';
 import { RegularText, Title } from '../../components/atoms/Typography';
 import { colors } from '../../utils/colors'
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { CustomStatusBar } from '../../components/atoms/CustomStatusBar';
 
 const Home = () => {
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>SMILE PARTNERS</Text>
+        <SafeAreaProvider>
+            <CustomStatusBar backgroundColor="#000" />
+            <View style={styles.container}>
+                <View style={styles.header}>
+                <Text>SMILE PARTNERS</Text>
             </View>
             <View style={styles.bottomContainer}>
                 <View style={styles.welcomeContainer}>
@@ -31,6 +35,7 @@ const Home = () => {
 
             </View>
         </View>
+        </SafeAreaProvider>
     );
 };
 
@@ -43,11 +48,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: '55%',
-    },
-    title: {
-        fontSize: 36,
-        fontWeight: 'bold',
-        fontFamily: 'Ubuntu_700Bold'
     },
     welcomeContainer: {
         marginBottom: 40,
