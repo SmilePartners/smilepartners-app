@@ -13,6 +13,8 @@ const NavBar = () => {
 
   const goToHome = () => {
     setSelectedTab('home')
+
+    navigation.navigate('home')
   }
   const goToClients = () => {
     setSelectedTab('list')
@@ -22,6 +24,8 @@ const NavBar = () => {
   }
   const openMenu = () => {
     setSelectedTab('menu')
+
+    navigation.navigate('menu')
   }
 
   const getColor = (tabName) => {
@@ -40,7 +44,7 @@ const NavBar = () => {
         <RegularText.SM style={{ color: getColor('list') }}>Mes clients</RegularText.SM>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('new-client')}>
+      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('new-client-step1')}>
       <Feather color={colors.secondary} name='plus' size={26} style={styles.icon} />
       </TouchableOpacity>
 

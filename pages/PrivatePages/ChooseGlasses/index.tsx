@@ -6,35 +6,32 @@ import { Header } from "../../../components/atoms/Header";
 import GenericInput from "../../../components/atoms/GenericInput";
 import GenericButton from "../../../components/atoms/GenericButton";
 import { useForm, Controller } from "react-hook-form";
-import SocialButton from "../../../components/atoms/SocialButton";
-import { useAuth } from "../../../hooks/useLogin/useLogin";
 import useKeyboard from "../../../hooks/useKeyBoard";
 import { useAtom } from "jotai";
 import { customerAtom, tokenAtom } from "../../../store/atoms/token";
+import SelectInput from "../../../components/atoms/SelectInput";
 
-const NewClient = ({ navigation }) => {
+const ChooseGlasses = ({ navigation }) => {
     const [customer, setCustomer] = useAtom(customerAtom)
-    const [token] = useAtom(tokenAtom)
     
   const {
     control,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      firstName: customer.firstName,
-      lastName: customer.lastName,
-      birthDate: customer.birthDate 
+        model: customer.model,
+        color: customer.color
     },
   });
 
   const onSubmit = async (data) => {
-    // setCustomer(data)
+    await setCustomer({...customer, ...data})
+    navigation.navigate('documents')
   };
 
   const keyboardIsVisible = useKeyboard()
-
-  console.log(customer)
 
   return (
     <>
@@ -43,10 +40,9 @@ const NewClient = ({ navigation }) => {
         <View style={[styles.header, keyboardIsVisible && { height: '5%' }]}>
           {!keyboardIsVisible && (          
             <>
-          <Title.MD style={{ marginBottom: 10 }}>Nouveau client</Title.MD>
+          <Title.MD style={{ marginBottom: 10 }}>Choix de la monture</Title.MD>
           <RegularText.MD>
-          Pour commencer, saisissez les informations
-            personnels du client.
+          Aidez votre client à sélectionner sa monture. Proposez lui d’essayer celles qui sont à son goût.
           </RegularText.MD>
           </>
           )}
@@ -59,54 +55,42 @@ const NewClient = ({ navigation }) => {
               required: true,
             }}
             render={({ field: { onChange, onBlur, value } }) => (
-              <GenericInput
-                icon="user-plus"
+              <SelectInput
+                icon="eye"
+                selectedValue={watch('model')}
+                items={[{ label: 'testtt', value: 'testtt'}, { label: 'test', value: 'test'}]}
                 onBlur={onBlur}
-                onChangeText={onChange}
+                onValueChange={onChange}
                 value={value}
-                placeholder="Prénom du client"
-                error={errors.firstName}
-                errorMessage={errors.firstName?.message}
+                placeholder="Sélectionner la monture"
+                error={errors.model}
+                errorMessage={errors.model?.message}
               />
             )}
-            name="firstName"
+            name="model"
           />
-                    <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <GenericInput
-                icon="user-plus"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                placeholder="Nom du client"
-                error={errors.lastName}
-                errorMessage={errors.lastName?.message}
-              />
+            {watch('model') && (
+                            <Controller
+                            control={control}
+                            rules={{
+                              required: true,
+                            }}
+                            render={({ field: { onChange, onBlur, value } }) => (
+                                <SelectInput
+                                icon="circle"
+                                selectedValue={watch('color')}
+                                items={[{ label: 'rouge', value: 'red'}, { label: 'noir', value: 'black'}]}
+                                onBlur={onBlur}
+                                onValueChange={onChange}
+                                value={value}
+                                placeholder="Sélectionner la couleur"
+                                error={errors.model}
+                                errorMessage={errors.model?.message}
+                              />
+                            )}
+                            name="color"
+                          />
             )}
-            name="lastName"
-          />
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <GenericInput
-                icon="calendar"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                placeholder="Date de naissance du client"
-                error={errors.birthDate}
-                errorMessage={errors.birthDate?.message}
-              />
-            )}
-            name="birthDate"
-          />
           <View style={{ marginTop: 'auto', width: '100%' }}>
           <GenericButton
             onPress={handleSubmit(onSubmit)}
@@ -117,7 +101,7 @@ const NewClient = ({ navigation }) => {
               backgroundColor: colors.secondary,
               width: "100%",
             }}
-            title="Suivant"
+            title="Valider la monture"
           />
           </View>
 
@@ -158,4 +142,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewClient;
+export default ChooseGlasses;

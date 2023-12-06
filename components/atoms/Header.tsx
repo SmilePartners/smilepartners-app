@@ -11,7 +11,7 @@ export const Header = ({ icon, navigation, onlyLogo, backgroundStyle }) => {
   return (
     <View style={[styles.headerContainer, backgroundStyle,  { paddingTop: insets.top }, onlyLogo && { justifyContent: 'center' }]}>
         <Pressable onPress={() => navigation.goBack()}>
-          <Feather name="arrow-left" size={24} />
+          <Feather style={{ marginLeft: 'auto' }} name="arrow-left" size={24} />
         </Pressable>
       <RegularText.MD>SMILE</RegularText.MD>
       {!onlyLogo && (

@@ -1,9 +1,25 @@
-import { atomWithStorage } from 'jotai/utils';
+import { atomWithStorage, createJSONStorage, unwrap } from 'jotai/utils';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export const tokenAtom = atomWithStorage('token', '');
+const tokenStorage = createJSONStorage(() => AsyncStorage);
+const clientStorage = createJSONStorage(() => AsyncStorage);
 
-export const customerAtom = atomWithStorage('token', {
+const asyncTokenAtom = atomWithStorage('token', '', tokenStorage);
+export const tokenAtom = unwrap(asyncTokenAtom, (prev) => prev ?? '');
+
+const asyncCustomerAtom = atomWithStorage('client', {
     firstName: '',
     lastName: '',
     birthDate: '',
+    numberPhone: '',
+    email: ''
+}, clientStorage)
+
+export const customerAtom = unwrap(asyncCustomerAtom, (prev) => prev ?? {
+    firstName: '',
+    lastName: '',
+    birthDate: '',
+    numberPhone: '',
+    email: ''
 })
+

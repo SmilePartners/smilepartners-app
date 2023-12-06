@@ -20,14 +20,18 @@ import { tokenAtom } from "./store/atoms/token";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Welcome from "./pages/PublicPage/Welcome";
 import Home from "./pages/PrivatePages/Home";
-import NewClient from "./pages/PrivatePages/NewClient";
+import NewClientStep2 from "./pages/PrivatePages/NewClient/Step2";
+import NewClientStep1 from "./pages/PrivatePages/NewClient/Step1";
+import Menu from "./pages/PrivatePages/Menu";
+import ChooseGlasses from "./pages/PrivatePages/ChooseGlasses";
+import Documents from "./pages/PrivatePages/Documents";
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
 
-
 export default function App() {
   const [token] = useAtom(tokenAtom)
+
 
   let [fontsLoaded, fontError] = useFonts({
     Ubuntu_700Bold,
@@ -52,13 +56,18 @@ export default function App() {
           <Stack.Navigator
             screenOptions={{
               headerShown: false,
-              animation: "slide_from_bottom",
+              animation: 'default'
             }}
           >
             {token ? (
               <>
                 <Stack.Screen name="home" component={Home} />
-                <Stack.Screen name="new-client" component={NewClient} />
+                <Stack.Screen name="menu" options={{ animation: 'none' }} component={Menu} />
+                <Stack.Screen name="new-client-step1" options={{ animation: 'none' }} component={NewClientStep1} />
+                <Stack.Screen name="new-client-step2" options={{ animation: 'none' }} component={NewClientStep2} />
+                <Stack.Screen name="choose-glasses" options={{ animation: 'none' }} component={ChooseGlasses} />
+                <Stack.Screen name="documents" options={{ animation: 'none' }} component={Documents} />
+
               </>
             ) : (
               <>
@@ -70,6 +79,6 @@ export default function App() {
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
-      </QueryClientProvider>
+    </QueryClientProvider>
   );
 }

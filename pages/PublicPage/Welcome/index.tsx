@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
-    paddingTop: 40,
+    paddingTop: 40
   },
   header: {
     alignItems: "center",
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Welcome;
+export default Welcome

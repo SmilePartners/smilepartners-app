@@ -5,19 +5,22 @@ import colors from '../../../utils/colors'
 import NavBar from '../../../components/atoms/NavBar'
 import { useAtom } from 'jotai'
 import { tokenAtom } from '../../../store/atoms/token'
+import { Pressable } from 'react-native'
 
 
-const Home = ({ navigation }) => {
-    const [token] = useAtom(tokenAtom)
+const Menu = ({ navigation }) => {
+    const [, setToken] = useAtom(tokenAtom)
 
-    console.log('ici', token)
     return (
         <>
             <Header backgroundStyle={{ backgroundColor: colors.grey }} onlyLogo navigation={navigation} />
-            <RegularText.MD>code: {token}</RegularText.MD>
+            <Pressable onPress={() => setToken('')}>
+            <RegularText.MD>logout</RegularText.MD>
+            </Pressable>
+
             <NavBar />
         </>
     )
 }
 
-export default Home
+export default Menu
