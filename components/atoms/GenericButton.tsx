@@ -28,7 +28,7 @@ const GenericButton: React.FC<GenericButtonProps> = ({
   return (
     <TouchableOpacity
       style={{ ...styles.button, ...Object(style) }}
-      onPress={()=> onPress()}
+      onPress={() => onPress()}
     >
       {to ? (
         <Link to={to}>

@@ -1,6 +1,6 @@
-import { z } from "zod";
-import { loginDataSchema, apiResponseSchema } from "./useLogin.schema";
+import { type z } from 'zod'
+import { type loginDataSchema, type apiResponseSchema } from './useLogin.schema'
 
-export type ApiResponseData = z.infer<typeof apiResponseSchema>;
+export type ApiResponseData = z.infer<typeof apiResponseSchema>
 
-export type LoginData = z.infer<typeof loginDataSchema>;
+export type LoginData = z.infer<typeof loginDataSchema>
